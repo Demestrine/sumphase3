@@ -1,19 +1,14 @@
-from app.database import Base, engine, SessionLocal
+from app.database import SessionLocal
 from app.models import User, Book, Genre
 
-# 1 Create tables
-Base.metadata.create_all(bind=engine)
-print("Tables created in PostgreSQL successfully!")
-
-# 2 Insert test data
+# Insert test user
 session = SessionLocal()
 new_user = User(name="Demmy", email="demmy@gmail.com")
 session.add(new_user)
 session.commit()
 session.close()
-print("Test user added successfully!")
 
-# 3 Query data
+# Query users
 session = SessionLocal()
 users = session.query(User).all()
 for user in users:
